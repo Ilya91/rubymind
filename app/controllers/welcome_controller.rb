@@ -4,6 +4,7 @@ class WelcomeController < ApplicationController
   def initialize
     @x = 4
     @y = 6
+    puts self.class
   end
 
   def index
