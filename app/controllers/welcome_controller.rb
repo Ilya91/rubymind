@@ -22,4 +22,12 @@ class WelcomeController < ApplicationController
     text = "(#{@x}; #{@y});"
     "Point: #{text}"
   end
+
+  def show_me_var
+    @no_var = 2
+  end
+
 end
+
+point = WelcomeController.new
+p point.show_me_var
