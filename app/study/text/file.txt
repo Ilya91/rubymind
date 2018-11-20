@@ -1,0 +1,6 @@
+Earlier in this tutorial we made a web page with rows and columns, and it was responsive, but it did not look good on a small screen.
+Media queries can help with that. We can add a breakpoint where certain parts of the design will behave differently on each side of the breakpoint.
+hello world
+hello world
+hello world
+hello world
