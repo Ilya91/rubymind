@@ -1,5 +1,8 @@
 <h3>Posts</h3>
 <% @post.each do |post| %>
-  <h5><%= post.title %></h5>
-  <p><%= post.body %></p>
+  <div class="alert alert-light">
+    <h5><%= link_to post.title, post_path(post) %></h5>
+    <p><%= post.body %></p>
+  </div>
+
 <% end %>
