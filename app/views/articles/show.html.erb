@@ -1,0 +1,7 @@
+<h1><%= @article.title %></h1>
+<p><%= @article.description %></p>
+<hr>
+<%= link_to 'Edit', edit_article_path(@article), :class => 'btn btn-warning' %>
+<%= link_to 'Delete', article_path(@article), method: :delete, data: {confirm: 'Really???'},
+            :class => 'btn btn-danger' %>
+<hr>
