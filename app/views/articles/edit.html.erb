@@ -1,7 +1,7 @@
-<h2>Edit post: <%= @post.title %></h2>
-<%= form_for :post, url: post_path(@post), method: :patch do |f| %>
-  <% if @post.errors.any? %>
-    <% @post.errors.full_messages.each do |msg| %>
+<h2>Edit article: <%= @article.title %></h2>
+<%= form_for :article, url: article_path(@article), method: :patch do |f| %>
+  <% if @article.errors.any? %>
+    <% @article.errors.full_messages.each do |msg| %>
       <div class="alert alert-danger"><%= msg %></div>
     <% end %>
   <% end %>
@@ -11,7 +11,7 @@
 </p>
   <p>
     Text <br>
-    <%= f.text_area(:body, {:class => 'form-control'}) %>
+    <%= f.text_area(:description, {:class => 'form-control'}) %>
   </p>
   <p>
     <%= f.submit({:class => 'btn btn-success'}) %>

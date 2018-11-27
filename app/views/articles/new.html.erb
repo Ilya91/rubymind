@@ -1,4 +1,9 @@
 <h2>Create an article</h2>
+<% if @article.errors.any? %>
+  <% @article.errors.full_messages.each do |msg| %>
+    <div class="alert alert-danger"><%= msg %></div>
+  <% end %>
+<% end %>
 <%= form_for :article, url: articles_path do |f| %>
 <p>
   Title <br>
