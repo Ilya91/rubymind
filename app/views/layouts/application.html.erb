@@ -60,9 +60,7 @@
   </nav>
   <main role="main" class="container">
     <div  style="padding-bottom: 100px"></div>
-    <% flash.each do |name, msg| %>
-      <div class="alert alert-success"><%= msg %></div>
-    <% end %>
+    <%= render 'layouts/messages' %>
     <%= yield %>
   </main>
 
