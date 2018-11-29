@@ -17,7 +17,8 @@
     <div  style="padding-bottom: 100px"></div>
     <%= render 'layouts/messages' %>
     <%= yield %>
+    <%= render 'layouts/footer' %>
+    <%= debug(params) if Rails.env.development? %>
   </main>
-
   </body>
 </html>
