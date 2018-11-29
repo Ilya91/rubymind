@@ -1,7 +1,19 @@
 <h3>All articles</h3>
 <% @articles.each do |article| %>
-  <div class="alert alert-light">
-    <h5><%= link_to article.title, article_path(article) %></h5>
-    <p><%= article.description %></p>
+  <div class="media">
+    <div class="media-left">
+      <a href="#" class="thumbnail">
+        <img class="media-object" width="100" src="https://images.pexels.com/photos/908284/pexels-photo-908284.jpeg" alt="...">
+      </a>
+    </div>
+    <div class="media-body">
+      <div class="article-meta-details">
+        <small>Created by: <span class="label label-warning"><%= article.user.username %></span></small>
+        <small><%= time_ago_in_words(article.created_at) %> ago</small>
+      </div>
+      <h4 class="media-heading"><%= link_to article.title, article_path(article) %></h4>
+      <p><%= truncate(article.description, length: 100 ) %></p>
+    </div>
   </div>
+  <hr>
 <% end %>
