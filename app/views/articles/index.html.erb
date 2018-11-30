@@ -1,19 +1,101 @@
-<h3>All articles</h3>
-<% @articles.each do |article| %>
-  <div class="media">
-    <div class="media-left">
-      <a href="#" class="thumbnail">
-        <img class="media-object" width="100" src="https://images.pexels.com/photos/908284/pexels-photo-908284.jpeg" alt="...">
-      </a>
+<div class="container">
+
+  <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+
+      <h3>All articles</h3>
+      <% @articles.each do |article| %>
+
+        <div class="card mb-4">
+          <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+          <div class="card-body">
+            <h2 class="card-title"><%= link_to article.title, article_path(article) %></h2>
+            <p class="card-text"><%= truncate(article.description, length: 100 ) %></p>
+            <%= link_to "Read More", article_path(article), :class => 'btn btn-primary' %>
+          </div>
+          <div class="card-footer text-muted">
+            Posted on <%= time_ago_in_words(article.created_at) %> ago by
+            <a href="#"><%= article.user.username %></a>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- Pagination -->
+      <ul class="pagination justify-content-center mb-4">
+        <li class="page-item">
+          <a class="page-link" href="#">&larr; Older</a>
+        </li>
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Newer &rarr;</a>
+        </li>
+      </ul>
+
     </div>
-    <div class="media-body">
-      <div class="article-meta-details">
-        <small>Created by: <span class="label label-warning"><%= article.user.username %></span></small>
-        <small><%= time_ago_in_words(article.created_at) %> ago</small>
+
+    <!-- Sidebar Widgets Column -->
+    <div class="col-md-4">
+
+      <!-- Search Widget -->
+      <div class="card my-4">
+        <h5 class="card-header">Search</h5>
+        <div class="card-body">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">Go!</button>
+                </span>
+          </div>
+        </div>
       </div>
-      <h4 class="media-heading"><%= link_to article.title, article_path(article) %></h4>
-      <p><%= truncate(article.description, length: 100 ) %></p>
+
+      <!-- Categories Widget -->
+      <div class="card my-4">
+        <h5 class="card-header">Categories</h5>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-6">
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#">Web Design</a>
+                </li>
+                <li>
+                  <a href="#">HTML</a>
+                </li>
+                <li>
+                  <a href="#">Freebies</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-6">
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#">JavaScript</a>
+                </li>
+                <li>
+                  <a href="#">CSS</a>
+                </li>
+                <li>
+                  <a href="#">Tutorials</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Side Widget -->
+      <div class="card my-4">
+        <h5 class="card-header">Side Widget</h5>
+        <div class="card-body">
+          You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+        </div>
+      </div>
+
     </div>
+
   </div>
-  <hr>
-<% end %>
+  <!-- /.row -->
+
+</div>
