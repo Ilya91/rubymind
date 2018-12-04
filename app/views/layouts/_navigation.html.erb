@@ -29,6 +29,17 @@
           <%= link_to 'New article', new_article_path, class: 'dropdown-item' %>
         </div>
       </li>
+
+      <li class="nav-item dropdown <%= current_class?('/users')%>">
+        <a class="nav-link dropdown-toggle"
+           href="" id="dropdown01"
+           data-toggle="dropdown"
+           aria-haspopup="true"
+           aria-expanded="false">Users</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <%= link_to 'All users', users_path, class: 'dropdown-item' %>
+        </div>
+      </li>
       <li class="<%= current_class?('/signup')%> nav-item btn btn-outline-success btn-sm">
         <%= link_to 'Sign Up', signup_path, class: 'nav-link' %>
       </li>

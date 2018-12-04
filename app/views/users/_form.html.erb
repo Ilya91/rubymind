@@ -1,0 +1,22 @@
+<% if @user.errors.any? %>
+  <% @user.errors.full_messages.each do |msg| %>
+    <div class="alert alert-danger"><%= msg %></div>
+  <% end %>
+<% end %>
+<%= form_for @user do |f| %>
+  <p>
+    Title <br>
+    <%= f.text_field(:username, {:class => 'form-control'}) %>
+  </p>
+  <p>
+    Text <br>
+    <%= f.email_field(:email, {:class => 'form-control'}) %>
+  </p>
+  <p>
+    Password <br>
+    <%= f.password_field(:password, {:class => 'form-control'}) %>
+  </p>
+  <p>
+    <%= f.submit(@user.new_record? ? 'Create' : 'Update', {:class => 'btn btn-success'}) %>
+  </p>
+<% end %>
