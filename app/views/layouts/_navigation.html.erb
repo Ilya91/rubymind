@@ -43,6 +43,9 @@
       <li class="<%= current_class?('/signup')%> nav-item btn btn-outline-success btn-sm">
         <%= link_to 'Sign Up', signup_path, class: 'nav-link' %>
       </li>
+      <li class="<%= current_class?('/signup')%> nav-item btn btn-outline-success btn-sm">
+        <%= link_to 'Log out', logout_path, :method => :delete, class: 'nav-link' %>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
