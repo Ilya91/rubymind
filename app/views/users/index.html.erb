@@ -1,0 +1,137 @@
+<div class="container">
+
+  <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+
+      <h3>All users</h3>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="main-box no-header clearfix">
+              <div class="main-box-body clearfix">
+                <div class="table-responsive">
+                  <table class="table user-list">
+                    <thead>
+                    <tr>
+                      <th><span>User</span></th>
+                      <th><span>Created</span></th>
+                      <th class="text-center"><span>Articles</span></th>
+                      <th><span>Email</span></th>
+                      <th>&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @users.each do |user| %>
+                              <tr>
+                            <td>
+                              <%= gravatar_for user, size: 50 %>
+                              <%= link_to user.username, user_path(user), :class => 'user-link' %>
+                              <span class="user-subhead">Member</span>
+                            </td>
+                            <td><%= user.created_at.strftime("%m.%d.%Y") %></a></td>
+                            <td class="text-center">
+                              <span class="label label-default"><%= pluralize(user.articles.count, 'article') if user.articles %></span>
+                            </td>
+                            <td>
+                              <a href="#"><%= user.email %></a></a>
+                            </td>
+                            <td style="width: 20%;">
+                              <%= link_to "<span class='fa-stack'>
+                                                      <i class='fa fa-square fa-stack-2x'></i>
+                                                      <i class='fa fa-pencil fa-stack-1x fa-inverse'></i>
+                                                  </span>".html_safe,
+                                          edit_user_path(user),
+                                          :class => 'table-link'%>
+                              <%= link_to "<span class='fa-stack'>
+                                                      <i class='fa fa-square fa-stack-2x'></i>
+                                                      <i class='fa fa-trash-o fa-stack-1x fa-inverse'></i>
+                                                  </span>".html_safe,
+                                          user_path(user),
+                                          method: :delete,
+                                          data: {confirm: 'Really???'},
+                                          :class => 'table-link danger' %>
+                              </a>
+                            </td>
+                          </tr>
+                     <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      <!-- Pagination -->
+      <%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+
+    </div>
+
+    <!-- Sidebar Widgets Column -->
+    <div class="col-md-4">
+
+      <!-- Search Widget -->
+      <div class="card my-4">
+        <h5 class="card-header">Search</h5>
+        <div class="card-body">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">Go!</button>
+                </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categories Widget -->
+      <div class="card my-4">
+        <h5 class="card-header">Categories</h5>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-6">
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#">Web Design</a>
+                </li>
+                <li>
+                  <a href="#">HTML</a>
+                </li>
+                <li>
+                  <a href="#">Freebies</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-6">
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#">JavaScript</a>
+                </li>
+                <li>
+                  <a href="#">CSS</a>
+                </li>
+                <li>
+                  <a href="#">Tutorials</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Side Widget -->
+      <div class="card my-4">
+        <h5 class="card-header">Side Widget</h5>
+        <div class="card-body">
+          You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <!-- /.row -->
+
+</div>
