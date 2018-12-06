@@ -9,15 +9,21 @@
       <li class="<%= current_class?('/')%> nav-item">
         <%= link_to 'Home', home_path, class: 'nav-link' %>
       </li>
+      <% if logged_in? %>
       <li class="nav-item dropdown <%= current_class?('/')%>">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <%= link_to 'Main', home_path, class: 'dropdown-item' %>
+          <%= link_to 'All posts', posts_path, class: 'dropdown-item' %>
           <%= link_to 'About', about_path, class: 'dropdown-item' %>
           <%= link_to 'New post', new_post_path, class: 'dropdown-item' %>
         </div>
       </li>
-
+      <% else %>
+        <li class="<%= current_class?('/posts')%> nav-item">
+          <%= link_to 'Posts', posts_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+      <% if logged_in? %>
       <li class="nav-item dropdown <%= current_class?('/articles/new')%>">
         <a class="nav-link dropdown-toggle"
            href="" id="dropdown01"
@@ -29,7 +35,12 @@
           <%= link_to 'New article', new_article_path, class: 'dropdown-item' %>
         </div>
       </li>
-
+        <% else %>
+          <li class="<%= current_class?('/articles')%> nav-item">
+            <%= link_to 'Articles', articles_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+      <% if logged_in? %>
       <li class="nav-item dropdown <%= current_class?('/users')%>">
         <a class="nav-link dropdown-toggle"
            href="" id="dropdown01"
@@ -40,6 +51,7 @@
           <%= link_to 'All users', users_path, class: 'dropdown-item' %>
         </div>
       </li>
+        <% end %>
     </ul>
 <!--    <form class="form-inline my-2 my-lg-0">-->
 <!--      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
@@ -47,8 +59,20 @@
 <!--    </form>-->
 
   </div>
-
-  <%= link_to 'Sign Up', signup_path, class: 'btn btn-outline-primary' %>
-  <%= link_to 'Log in', login_path, class: 'btn btn-outline-primary' %>
-  <%= link_to 'Log out', logout_path, :method => :delete, class: 'btn btn-outline-primary' %>
+  <% if !logged_in? %>
+    <%= link_to 'Sign Up', signup_path, class: 'btn btn-outline-primary' %>
+    <%= link_to 'Log in', login_path, class: 'btn btn-outline-primary' %>
+  <% else %>
+    <li class="nav-item dropdown <%= current_class?('/users')%>">
+      <a class="nav-link dropdown-toggle"
+         href="" id="dropdown01"
+         data-toggle="dropdown"
+         aria-haspopup="true"
+         aria-expanded="false"><%= current_user.username %></a>
+      <div class="dropdown-menu" aria-labelledby="dropdown01">
+        <%= link_to 'Profile', profile_path, class: 'dropdown-item' %>
+      </div>
+    </li>
+    <%= link_to 'Log out', logout_path, :method => :delete, class: 'btn btn-outline-primary' %>
+  <% end %>
 </nav>
