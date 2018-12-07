@@ -1,16 +1,17 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[edit update show]
-  before_action :require_user, except: %i[create new]
+  before_action :set_user, only: %i[edit update show destroy]
+  before_action :require_same_user_users, only: %i[edit update destroy]
+  before_action :require_admin, only: [:destroy]
 
   def index
     @users = User.paginate(page: params[:page], per_page: 3)
   end
+
   def new
     @user = User.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)
@@ -32,10 +33,16 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
+  def show; end
+
+  def destroy
+    @user.destroy
+    flash[:danger] = 'User and all articles have been deleted'
+    redirect_to users_path
   end
 
   private
+
   def user_params
     params.require(:user).permit(:username, :email, :password)
   end
