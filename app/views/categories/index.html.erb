@@ -1,4 +1,11 @@
 <h1 align="center">Categories</h1>
-<% @categories.each do |category| %>
-  <%= category.name %>
+<% if !@categories.empty? %>
+<div class="list-group">
+  <a href="#" class="list-group-item active">
+    List of categories
+  </a>
+  <% @categories.each do |category| %>
+    <%= link_to category.name, edit_category_path(category), :class => 'list-group-item' %>
+  <% end %>
+</div>
 <% end %>
