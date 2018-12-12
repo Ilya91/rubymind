@@ -12,6 +12,22 @@
     Text <br>
     <%= f.text_area(:description, {:class => 'form-control'}) %>
   </p>
+<!--  <p>-->
+<!--    Text <br>-->
+    <%#= f.select(:category_ids, {:class => 'form-control'}) do %>
+      <%# categories_array = Category.all.map { |category| [category.name, category.id] } %>
+      <%#= options_for_select(categories_array) %>
+    <%# end %>
+<!--  </p>-->
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-offset-2 col-sm-8">
+        <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+          <% cb.label(class: 'checkbox-inline input_checkbox') {cb.check_box(class: 'checkbox') + cb.text}%>
+        <% end %>
+      </div>
+    </div>
+  </div>
   <p>
     <%= f.submit({:class => 'btn btn-success'}) %>
   </p>

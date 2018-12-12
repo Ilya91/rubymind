@@ -8,6 +8,11 @@
       <%= link_to "Read More", article_path(article), :class => 'btn btn-primary' %>
     </div>
     <div class="card-footer text-muted">
+      <% if article.categories.any? %>
+        <% article.categories.each do |category| %>
+          <span class="badge badge-warning"><%= category.name %></span>
+        <% end %>
+      <% end %>
       Posted on <%= time_ago_in_words(article.created_at) %> ago by
       <a href="#"><%= article.user.username %></a>
     </div>
